@@ -1,0 +1,15 @@
+specVersion: "3.2"
+metadata:
+  name: yeomanfiori
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: dist
+resources:
+  configuration:
+    paths:
+      webapp: dist

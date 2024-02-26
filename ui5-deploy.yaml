@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.2"
+metadata:
+  name: yeomanfiori
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        ignoreCertError: true
+        target:
+          url: https://SAP-S4-HANA.internal.cloudapp.net:8002/
+          client: "100"
+        credentials:
+          username: env:MY_USER
+          password: env:MY_PASSWORD
+        app:
+          name: ZZ_FIORIAPP1
+          description: Fruit fiori App
+          package: $TMP
+          transport: ""
+        exclude:
+          - /test/
